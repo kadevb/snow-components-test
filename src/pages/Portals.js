@@ -6,7 +6,8 @@ import {
 } from 'mdbreact';
 import {flatten} from 'lodash';
 import axios from 'axios';
-import {PortalCard, Loader} from '../lib/index';
+import {Loader} from '../lib/index';
+import PortalCard from '../components/PortalCard/PortalCard';
 
 export default () => {
     const [isLoading, setLoading] = useState(true);
