@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import React, {useContext} from 'react';
 import {some} from 'lodash';
 import {UserContext} from '../../contexts/UserContext/UserContext';
 
@@ -9,8 +9,8 @@ export default props => {
     
     //component does not require permissions
     if(roles.length === 0) {
-        return children;
+        return <div>{children}</div>;
     }
 
-    return some(roles, role => userRoles.includes(role)) ? children : null;
+    return some(roles, role => userRoles.includes(role)) ? <div>{children}</div> : null;
 };
