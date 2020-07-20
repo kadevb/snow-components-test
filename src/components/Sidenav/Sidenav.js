@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MDBNav } from 'mdbreact';
 import Sidenavlinks from './Sidenavlinks';
 
-export default () => {
+export default props => {
 	const [query, setQuery] = useState('');
 
 	return (
@@ -24,7 +24,7 @@ export default () => {
 					/>
 				</div>
 			</div>
-            <Sidenavlinks query={query} />
+            <Sidenavlinks {...props} query={query} />
 		</MDBNav>
 	);
 };

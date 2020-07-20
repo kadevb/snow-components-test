@@ -4,32 +4,7 @@ import { MDBNavItem, MDBNavLink } from 'mdbreact';
 import SidenavDropdown from './SidenavDropdown';
 import Authorization from '../Authorization/Authorization';
 
-const links = [
-	{
-		label: 'Home',
-		to: '/'
-	},
-	{
-		label: 'Portals',
-		to: '/portals'
-	},
-	{
-		label: 'Tables',
-		items: [
-			{
-				label: 'Incidents',
-				to: '/table/incident'
-			},
-			{
-				label: 'Script Includes',
-				roles: ['admin'],
-				to: '/table/sys_script_include'
-			}
-		]
-	}
-];
-
-export default ({ query }) => (
+export default ({ query, links }) => (
 	<div>
 		{links
 			.filter(
