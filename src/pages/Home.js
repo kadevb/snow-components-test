@@ -1,10 +1,14 @@
-import React from 'react';
-import {glideUser} from '../lib/index';
+import React, {useContext} from 'react';
+import {UserContext} from '../lib/index';
 
-export default () => (
-    <div>
-        <h1>
-            Hello, {glideUser.displayName}
-        </h1>
-    </div>
-);
+export default () => {
+    const { displayName } = useContext(UserContext);
+
+    return (
+        <div>
+            <h1>
+                Hello, {displayName}
+            </h1>
+        </div>
+    );
+}

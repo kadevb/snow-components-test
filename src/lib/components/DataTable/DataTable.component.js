@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { flatten } from 'lodash';
 import { MDBDataTableV5 } from 'mdbreact';
-import Loader from '../Loader/Loader';
+import {Loader} from '../index';
 
 export default (props) => {
 	const { table = '', columns, query = ''} = props;

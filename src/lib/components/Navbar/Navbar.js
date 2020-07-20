@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
     MDBNavbar,
     MDBNavbarNav,
@@ -8,11 +8,12 @@ import {
     MDBNavItem,
     MDBNavLink
 } from 'mdbreact';
-import glideUser from '../../glideUser';
+import {UserContext} from '../../contexts/UserContext/UserContext';
 import Navlinks from './Navlinks';
 
 export default () => {
 	const [isOpen, setOpen] = useState(false);
+    const {displayName} = useContext(UserContext);
 
 	return (
 		<MDBNavbar color='primary-color' dark expand='md'>
@@ -28,7 +29,7 @@ export default () => {
                             to='/'
                             className='waves-effect waves-light'
                         >
-                            {glideUser.displayName}
+                            {displayName}
                         </MDBNavLink>
                     </MDBNavItem>
                 </MDBNavbarNav>
