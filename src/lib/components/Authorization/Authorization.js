@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {some} from 'lodash';
-import glideUser from '../../glideUser';
+import {UserContext} from '../../contexts/UserContext/UserContext';
 
 export default props => {
-    const userRoles = glideUser.roles || [];
+    const {user} = useContext(UserContext);
+    const userRoles = user.roles || [];
     const { roles = [], children = undefined } = props; 
 
     //component does not require permissions

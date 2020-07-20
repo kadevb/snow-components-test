@@ -10,9 +10,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css'; 
 import 'mdbreact/dist/css/mdb.css';
 
-import Navbar from './lib/components/Navbar/Navbar';
-import Sidenav from './lib/components/Sidenav/Sidenav';
-import Authorization from './lib/components/Authorization/Authorization';
+import {Navbar, Sidenav, Authorization, NowApp} from './lib/index';
 
 import Home from './pages/Home';
 import Table from './pages/Table';
@@ -44,21 +42,23 @@ const sideNavLinks = [
 ];
 
 export default () => (
-  <Router basename='x_472589_snow_comp_react_components_test.do'>
-    <Navbar />
-    <MDBContainer fluid>
-      <MDBRow>
-        <MDBCol lg='3'>
-          <Sidenav links={sideNavLinks} />
-        </MDBCol>
-        <MDBCol lg='9'>
-          <Route exact path='/' component={Home} />
-          <Route path='/table/:name' component={Table} />
-          <Authorization roles={['admin']}>
-            <Route path='/portals' component={Portals} />
-          </Authorization>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
-  </Router>
+	<NowApp basename='x_472589_snow_comp_react_components_test.do'>
+		<Router>
+			<Navbar />
+			<MDBContainer fluid>
+			<MDBRow>
+				<MDBCol lg='3'>
+					<Sidenav links={sideNavLinks} />
+				</MDBCol>
+				<MDBCol lg='9'>
+					<Route exact path='/' component={Home} />
+					<Route path='/table/:name' component={Table} />
+					<Authorization roles={['admin']}>
+						<Route path='/portals' component={Portals} />
+					</Authorization>
+				</MDBCol>
+			</MDBRow>
+			</MDBContainer>
+		</Router>
+	</NowApp>
 );;
