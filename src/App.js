@@ -10,9 +10,9 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css'; 
 import 'mdbreact/dist/css/mdb.css';
 
-import Navbar from './components/Navbar/Navbar';
-import Sidenav from './components/Sidenav/Sidenav';
-import Authorization from './components/Authorization/Authorization';
+import Navbar from './lib/components/Navbar/Navbar';
+import Sidenav from './lib/components/Sidenav/Sidenav';
+import Authorization from './lib/components/Authorization/Authorization';
 
 import Home from './pages/Home';
 import Table from './pages/Table';

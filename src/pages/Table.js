@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {MDBTypography} from 'mdbreact';
-import DataTable from '../components/DataTable/DataTable';
-import Authorization from '../components/Authorization/Authorization';
+import {DataTable, Authorization} from '../lib/index';
 import tables from './tables';
 
 export default (props) => {

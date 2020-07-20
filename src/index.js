@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import axios from 'axios';
 import * as serviceWorker from './serviceWorker';
-import {token} from './glideUser';
+import {token} from './lib/glideUser';
 
 axios.defaults.headers['X-userToken'] = token;
 

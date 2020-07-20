@@ -1,5 +1,5 @@
 import React from 'react';
-import glideUser from '../glideUser';
+import {glideUser} from '../lib/index';
 
 export default () => (
     <div>
