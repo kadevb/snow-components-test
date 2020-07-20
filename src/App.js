@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol
+} from 'mdbreact';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import '@fortawesome/fontawesome-free/css/all.min.css'; 
+import 'bootstrap-css-only/css/bootstrap.min.css'; 
+import 'mdbreact/dist/css/mdb.css';
 
-export default App;
+import Navbar from './components/Navbar/Navbar';
+import Sidenav from './components/Sidenav/Sidenav';
+import Authorization from './components/Authorization/Authorization';
+
+import Home from './pages/Home';
+import Table from './pages/Table';
+import Portals from './pages/Portals';
+
+export default () => (
+  <Router basename='x_472589_snow_comp_react_components_test.do'>
+    <Navbar />
+    <MDBContainer fluid>
+      <MDBRow>
+        <MDBCol lg='3'>
+          <Sidenav />
+        </MDBCol>
+        <MDBCol lg='9'>
+          <Route exact path='/' component={Home} />
+          <Route path='/table/:name' component={Table} />
+          <Authorization roles={['admin']}>
+            <Route path='/portals' component={Portals} />
+          </Authorization>
+        </MDBCol>
+      </MDBRow>
+    </MDBContainer>
+  </Router>
+);;
