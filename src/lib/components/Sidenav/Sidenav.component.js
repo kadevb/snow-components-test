@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MDBNav } from 'mdbreact';
-import Sidenavlinks from './Sidenavlinks';
+import Sidenavlinks from './Sidenavlinks.component';
 
 export default props => {
 	const [query, setQuery] = useState('');

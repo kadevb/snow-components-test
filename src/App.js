@@ -6,10 +6,6 @@ import {
 } from 'mdbreact';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
-import '@fortawesome/fontawesome-free/css/all.min.css'; 
-import 'bootstrap-css-only/css/bootstrap.min.css'; 
-import 'mdbreact/dist/css/mdb.css';
-
 import {Navbar, Sidenav, Authorization, NowApp} from './lib/index';
 
 import Home from './pages/Home';

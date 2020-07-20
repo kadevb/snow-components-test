@@ -1,8 +1,8 @@
 import React from 'react';
 import { some } from 'lodash';
 import { MDBNavItem, MDBNavLink } from 'mdbreact';
-import SidenavDropdown from './SidenavDropdown';
-import Authorization from '../Authorization/Authorization';
+import SidenavDropdown from './SidenavDropdown.component';
+import {Authorization} from '../index';
 
 export default ({ query, links }) => (
 	<div>

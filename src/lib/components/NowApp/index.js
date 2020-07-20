@@ -4,6 +4,10 @@ import axios from 'axios';
 import {UserContext, userReducer} from '../../contexts/UserContext/UserContext';
 import {Authorization} from '../index';
 
+import '@fortawesome/fontawesome-free/css/all.min.css'; 
+import 'bootstrap-css-only/css/bootstrap.min.css'; 
+import 'mdbreact/dist/css/mdb.css';
+
 const { glideUser = {} } = window;
 const { displayName = 'Guest', roles = [], token = '', email = '', locale = 'en', theme = 'light' } = glideUser;
 
