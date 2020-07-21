@@ -1,8 +1,8 @@
 import React, {useReducer, useEffect} from 'react';
 import {routerReducer, NowRouterContext} from '../../contexts/NowRouterContext/NowRouterContext';
+import history from 'history/browser';
 
 const initialState = {
-    url: window.location.href,
     routes: {}
 };
 
@@ -17,11 +17,13 @@ export default ({basename, ...props}) => {
         )
     );
 
-    const { url = '' } = state;
-
     useEffect(() => {
         dispatch({type: 'location_change'});
-    }, [url]);
+
+        history.listen(() => {
+            dispatch({type: 'location_change'});
+        });
+    }, []);
 
     return (
         <NowRouterContext.Provider value={{state, dispatch}}>

@@ -9,13 +9,15 @@ export const routerReducer = (state, {type, payload}) => {
     const { assign } = Object;
     const { basename = '/' } = state;
     
-    const {routes = {}, url} = state;
+    const {routes = {}} = state;
 
     switch(type) {
         case 'go':
             const newUrl = `${basename}${payload}`;
             
-            return assign({}, state, { url: newUrl });
+            history.push(newUrl);
+
+            return assign({}, state);
         case 'add_route':
             const {path, component, show = false} = payload;
 
@@ -24,7 +26,7 @@ export const routerReducer = (state, {type, payload}) => {
 
             return assign({}, state, { routes: assign({}, routes, route) });
         case 'location_change':
-            const params = qs.parse(qs.extract(url));
+            const params = qs.parse(qs.extract(history.location.search));
             const currentPage = params.id || null;
 
             const newRoutes = {};
@@ -34,8 +36,6 @@ export const routerReducer = (state, {type, payload}) => {
 
                 return assign({}, route, {show});
             });
-
-            history.push(url);
 
             return assign({}, state, newRoutes);
         default:

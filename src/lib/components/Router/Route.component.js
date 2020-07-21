@@ -1,5 +1,6 @@
 import React from 'react';
 import qs from 'query-string';
+import history from 'history/browser';
 import { NowRouterContext } from '../../contexts/NowRouterContext/NowRouterContext';
 
 export default props => {
@@ -9,9 +10,11 @@ export default props => {
     return (
         <NowRouterContext.Consumer>
             {({ state, dispatch }) => {
-                const { routes = {}, url } = state;
+                const { routes = {} } = state;
                 const { show = false } = routes[path] || {};
-                const params = qs.parse(qs.extract(url));
+                const { location } = history;
+
+                const params = qs.parse(location.search);
 
                 !routes[path] && dispatch({type: 'add_route', payload: {path, component}});
 

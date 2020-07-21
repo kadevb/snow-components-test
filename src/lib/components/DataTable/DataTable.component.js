@@ -23,7 +23,7 @@ export default (props) => {
 			.then(setRecords)
 			.catch(() => setRecords([]))
 			.finally(() => setLoading(false));
-	}, [table, columns, query]);
+	}, [table, fields, query]);
 
 	if (isLoading) {
 		return <Loader />;
