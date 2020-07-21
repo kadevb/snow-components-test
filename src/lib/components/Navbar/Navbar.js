@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react';
+import BSNavbar from 'react-bootstrap/Navbar';
+import NavbarCollapse from 'react-bootstrap/NavbarCollapse';
+import NavbarToggle from 'react-bootstrap/NavbarToggle';
 import {
-    MDBNavbar,
-    MDBNavbarNav,
-	MDBNavbarBrand,
-	MDBNavbarToggler,
-    MDBCollapse,
-    MDBNavItem
-} from 'mdbreact';
+    NavbarBrand,
+    Nav,
+    NavItem
+} from 'react-bootstrap';
 import {Link} from '../index';
 import {UserContext} from '../../contexts/UserContext/UserContext';
 import Navlinks from './Navlinks';
@@ -16,24 +16,24 @@ export default () => {
     const {displayName} = useContext(UserContext);
 
 	return (
-		<MDBNavbar color='primary-color' dark expand='md'>
-			<MDBNavbarBrand>
+		<BSNavbar color='primary-color' dark expand='md'>
+			<NavbarBrand>
 				<strong className='white-text'>Nav</strong>
-			</MDBNavbarBrand>
-			<MDBNavbarToggler onClick={() => setOpen(!isOpen)} />
-			<MDBCollapse isOpen={isOpen} navbar>
+			</NavbarBrand>
+			<NavbarToggle onClick={() => setOpen(!isOpen)} />
+			<NavbarCollapse isOpen={isOpen} navbar>
 				<Navlinks />
-                <MDBNavbarNav right>
-                    <MDBNavItem>
+                <Nav right>
+                    <NavItem>
                         <Link
                             to='/'
                             className='waves-effect waves-light'
                         >
                             {displayName}
                         </Link>
-                    </MDBNavItem>
-                </MDBNavbarNav>
-			</MDBCollapse>
-		</MDBNavbar>
+                    </NavItem>
+                </Nav>
+			</NavbarCollapse>
+		</BSNavbar>
 	);
 };

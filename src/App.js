@@ -46,7 +46,7 @@ export default () => (
 					<Sidenav links={sideNavLinks} />
 				</MDBCol>
 				<MDBCol lg='9'>
-					<Route exact path='/' component={Home} />
+					<Route path='/' component={Home} />
 					<Route path='?id=table' component={Table} />
 					<Authorization roles={['admin']}>
 						<Route path='?id=portals' component={Portals} />

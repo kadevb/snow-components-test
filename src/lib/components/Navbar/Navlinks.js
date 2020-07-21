@@ -1,14 +1,10 @@
 import React from 'react';
-import {Link} from '../index';
+import {Link} from '../index';	
 import {
-	MDBNavbarNav,
-	MDBNavItem,
-	MDBDropdownMenu,
-	MDBDropdown,
-	MDBDropdownToggle,
-    MDBDropdownItem,
-    MDBIcon
-} from 'mdbreact';
+	Nav,
+	NavDropdown,
+	NavItem
+} from 'react-bootstrap';
 import {some} from 'lodash';
 import Authorization from '../Authorization/Authorization';
 
@@ -18,20 +14,19 @@ const links = [
 ];
 
 export default () => (
-	<MDBNavbarNav right>
+	<Nav right>
 		{links.map(({ label = null, to = '?', roles = [], items = [], icon = null}, index) => {
 			if (items.length === 0) {
 				return (
 					<Authorization key={index} roles={roles}>
-						<MDBNavItem>
+						<NavItem>
 							<Link
 								to={to}
 								className='waves-effect waves-light'
 							>
-                                {icon ? <MDBIcon icon={icon} /> : null}
 								{label}
 							</Link>
-						</MDBNavItem>
+						</NavItem>
 					</Authorization>
 				);
 			}
@@ -42,27 +37,19 @@ export default () => (
                 
 			return (
 				<Authorization key={index} roles={dropdownRoles}>
-					<MDBNavItem>
-						<MDBDropdown>
-							<MDBDropdownToggle nav caret>
-								<span className='mr-2'>
-                                    {icon ? <MDBIcon fab icon={icon} /> : null}
-                                    {label}
-                                </span>
-							</MDBDropdownToggle>
-							<MDBDropdownMenu>
-								{items.map(({ label, to, roles = [] }, index) => (
-									<Authorization key={index} roles={roles}>
-										<MDBDropdownItem>
-											<Link to={to}>{label}</Link>
-										</MDBDropdownItem>
-									</Authorization>
-								))}
-							</MDBDropdownMenu>
-						</MDBDropdown>
-					</MDBNavItem>
+					<NavItem>
+						<NavDropdown>
+							{items.map(({ label, to, roles = [] }, index) => (
+								<Authorization key={index} roles={roles}>
+									<NavDropdown.Item>
+										<Link to={to}>{label}</Link>
+									</NavDropdown.Item>
+								</Authorization>
+							))}
+						</NavDropdown>
+					</NavItem>
 				</Authorization>
 			);
 		})}
-	</MDBNavbarNav>
+	</Nav>
 );

@@ -1,16 +1,17 @@
 import React from 'react';
+import NavLink from 'react-bootstrap/NavLink';
 import { NowRouterContext } from '../../contexts/NowRouterContext/NowRouterContext';
 
 export default ({ to, children, ...props }) => (
 	<NowRouterContext.Consumer>
 		{({ dispatch }) => (
-			<a {...props} onClick={e => {
+			<NavLink {...props} onClick={e => {
 				e.preventDefault();
 
 				dispatch({ type: 'go', payload: to })
 			}}>
 				{children}
-			</a>
+			</NavLink>
 		)}
 	</NowRouterContext.Consumer>
 );
