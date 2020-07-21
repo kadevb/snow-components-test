@@ -5,9 +5,9 @@ import {
 	MDBNavbarBrand,
 	MDBNavbarToggler,
     MDBCollapse,
-    MDBNavItem,
-    MDBNavLink
+    MDBNavItem
 } from 'mdbreact';
+import {Link} from '../index';
 import {UserContext} from '../../contexts/UserContext/UserContext';
 import Navlinks from './Navlinks';
 
@@ -25,12 +25,12 @@ export default () => {
 				<Navlinks />
                 <MDBNavbarNav right>
                     <MDBNavItem>
-                        <MDBNavLink
+                        <Link
                             to='/'
                             className='waves-effect waves-light'
                         >
                             {displayName}
-                        </MDBNavLink>
+                        </Link>
                     </MDBNavItem>
                 </MDBNavbarNav>
 			</MDBCollapse>

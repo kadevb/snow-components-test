@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Collapse, MDBIcon } from 'mdbreact';
-import {Authorization} from '../index';
+import {Authorization, Link} from '../index';
 
 export default ({ label, items, query = ''}) => {
     const [isOpen, setOpen] = useState(false);

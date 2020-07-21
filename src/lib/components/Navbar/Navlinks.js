@@ -1,9 +1,8 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link} from '../index';
 import {
 	MDBNavbarNav,
 	MDBNavItem,
-	MDBNavLink,
 	MDBDropdownMenu,
 	MDBDropdown,
 	MDBDropdownToggle,
@@ -20,18 +19,18 @@ const links = [
 
 export default () => (
 	<MDBNavbarNav right>
-		{links.map(({ label = null, to = '/', roles = [], items = [], icon = null}, index) => {
+		{links.map(({ label = null, to = '?', roles = [], items = [], icon = null}, index) => {
 			if (items.length === 0) {
 				return (
 					<Authorization key={index} roles={roles}>
 						<MDBNavItem>
-							<MDBNavLink
+							<Link
 								to={to}
 								className='waves-effect waves-light'
 							>
                                 {icon ? <MDBIcon icon={icon} /> : null}
 								{label}
-							</MDBNavLink>
+							</Link>
 						</MDBNavItem>
 					</Authorization>
 				);

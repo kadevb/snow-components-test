@@ -4,9 +4,8 @@ import {
   MDBRow,
   MDBCol
 } from 'mdbreact';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
 
-import {Navbar, Sidenav, Authorization, NowApp} from './lib/index';
+import {Navbar, Sidenav, Authorization, NowApp, Router, Route} from './lib/index';
 
 import Home from './pages/Home';
 import Table from './pages/Table';
@@ -15,31 +14,31 @@ import Portals from './pages/Portals';
 const sideNavLinks = [
 	{
 		label: 'Home',
-		to: '/'
+		to: '?'
 	},
 	{
 		label: 'Portals',
-		to: '/portals'
+		to: '?id=portals'
 	},
 	{
 		label: 'Tables',
 		items: [
 			{
 				label: 'Incidents',
-				to: '/table/incident'
+				to: '?id=table&name=incident'
 			},
 			{
 				label: 'Script Includes',
 				roles: ['admin'],
-				to: '/table/sys_script_include'
+				to: '?id=table&name=sys_script_include'
 			}
 		]
 	}
 ];
 
 export default () => (
-	<NowApp basename='x_472589_snow_comp_react_components_test.do'>
-		<Router>
+	<NowApp >
+		<Router basename='x_472589_snow_comp_react_components_test.do'>
 			<Navbar />
 			<MDBContainer fluid>
 			<MDBRow>
@@ -48,9 +47,9 @@ export default () => (
 				</MDBCol>
 				<MDBCol lg='9'>
 					<Route exact path='/' component={Home} />
-					<Route path='/table/:name' component={Table} />
+					<Route path='?id=table' component={Table} />
 					<Authorization roles={['admin']}>
-						<Route path='/portals' component={Portals} />
+						<Route path='?id=portals' component={Portals} />
 					</Authorization>
 				</MDBCol>
 			</MDBRow>

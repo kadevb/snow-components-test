@@ -1,8 +1,8 @@
 import React from 'react';
 import { some } from 'lodash';
-import { MDBNavItem, MDBNavLink } from 'mdbreact';
+import { MDBNavItem } from 'mdbreact';
 import SidenavDropdown from './SidenavDropdown.component';
-import {Authorization} from '../index';
+import {Authorization, Link} from '../index';
 
 export default ({ query, links }) => (
 	<div>
@@ -19,12 +19,12 @@ export default ({ query, links }) => (
 					return (
 						<Authorization key={index} roles={roles}>
 							<MDBNavItem>
-								<MDBNavLink
+								<Link
 									to={to}
 									className='waves-effect waves-light'
 								>
 									{label}
-								</MDBNavLink>
+								</Link>
 							</MDBNavItem>
 						</Authorization>
 					);
