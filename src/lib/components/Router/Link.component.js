@@ -1,11 +1,16 @@
 import React from 'react';
-import { MDBBtn } from 'mdbreact';
 import { NowRouterContext } from '../../contexts/NowRouterContext/NowRouterContext';
 
-export default ({ to, ...props }) => (
+export default ({ to, children, ...props }) => (
 	<NowRouterContext.Consumer>
 		{({ dispatch }) => (
-			<MDBBtn {...props} onClick={() => dispatch({ type: 'go', payload: to })} />
+			<a {...props} onClick={e => {
+				e.preventDefault();
+
+				dispatch({ type: 'go', payload: to })
+			}}>
+				{children}
+			</a>
 		)}
 	</NowRouterContext.Consumer>
 );

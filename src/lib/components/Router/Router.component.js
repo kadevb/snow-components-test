@@ -6,8 +6,7 @@ const initialState = {
     routes: {}
 };
 
-export default ({basename, ...props}) => {
-    const {children = null} = props;
+export default ({basename, children}) => {
     const [state, dispatch] = useReducer(
         routerReducer, 
         Object.assign(
