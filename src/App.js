@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol
-} from 'mdbreact';
+import {Container, Row, Col} from 'react-bootstrap';
 
 import {Navbar, Sidenav, Authorization, NowApp, Router, Route} from './lib/index';
 
@@ -40,20 +36,20 @@ export default () => (
 	<NowApp>
 		<Router basename='x_472589_snow_comp_react_components_test.do'>
 			<Navbar />
-			<MDBContainer fluid>
-			<MDBRow>
-				<MDBCol lg='3'>
+			<Container fluid>
+			<Row>
+				<Col lg='3' xs='0'>
 					<Sidenav links={sideNavLinks} />
-				</MDBCol>
-				<MDBCol lg='9'>
+				</Col>
+				<Col lg='9'>
 					<Route path='/' component={Home} />
 					<Route path='?id=table' component={Table} />
 					<Authorization roles={['admin']}>
 						<Route path='?id=portals' component={Portals} />
 					</Authorization>
-				</MDBCol>
-			</MDBRow>
-			</MDBContainer>
+				</Col>
+			</Row>
+			</Container>
 		</Router>
 	</NowApp>
 );;

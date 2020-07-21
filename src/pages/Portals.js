@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {
-    MDBContainer,
-    MDBRow,
-    MDBCol,
-} from 'mdbreact';
+    Container,
+    Row,
+    Col
+} from 'react-bootstrap';
 import {flatten} from 'lodash';
 import axios from 'axios';
 import {Loader} from '../lib/index';
@@ -29,14 +29,14 @@ export default () => {
     }
 
     return (
-        <MDBContainer>
-            <MDBRow>
+        <Container>
+            <Row>
                 {portals.map(({logo, url_suffix, title}, index) => (
-                    <MDBCol xs='12' sm='6' md='3' key={index}>
+                    <Col xs='12' sm='6' md='3' key={index}>
                         <PortalCard logo={logo} url_suffix={url_suffix} title={title} />
-                    </MDBCol>
+                    </Col>
                 ))}
-            </MDBRow>
-        </MDBContainer>
+            </Row>
+        </Container>
     );
 };

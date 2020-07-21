@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {MDBTypography} from 'mdbreact';
 import {DataTable, Authorization} from '../lib/index';
 import tables from './tables';
 
@@ -20,9 +19,9 @@ export default (props) => {
 
     return (
         <Authorization {...props} roles={roles}>
-            <MDBTypography tag='h1' variant='h1-responsive'>
+            <h1>
                 {`${label}s`}
-            </MDBTypography>
+            </h1>
             <DataTable {...props} table={table} columns={fields} responsive />
         </Authorization>
     );
