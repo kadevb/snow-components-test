@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { flatten } from 'lodash';
 import { MDBDataTableV5 } from 'mdbreact';
-import {Loader} from '../index';
+import {Loader, withAuth} from '../index';
 
-export default (props) => {
+const DataTable = props => {
 	const { table = '', columns = [], query = '', loader = Loader} = props;
 	const [records, setRecords] = useState([]);
 	const [isLoading, setLoading] = useState(true);
@@ -53,3 +53,5 @@ export default (props) => {
         />
 	);
 };
+
+export default ({ roles = [], ...props}) => withAuth(roles)(DataTable, props);

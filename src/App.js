@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 
-import {Navbar, Sidenav, Authorization, NowApp, Router, Route, Btn} from './lib/index';
+import {Navbar, Sidenav, NowApp, Router, Route, Btn, Loader} from './lib/index';
 
 import Home from './pages/Home';
 import Table from './pages/Table';
@@ -47,9 +47,7 @@ export default () => (
 						<Btn>I am public button!</Btn>
 						<Route path='/' component={Home} />
 						<Route path='?id=table' component={Table} />
-						<Authorization roles={['admin']}>
-							<Route path='?id=portals' component={Portals} />
-						</Authorization>
+						<Route path='?id=portals' roles={['admin']} component={Portals} />
 					</Col>
 				</Row>
 				</Container>

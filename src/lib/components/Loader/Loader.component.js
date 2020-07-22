@@ -1,7 +1,8 @@
 import React, {Fragment} from 'react';
 import {Spinner} from 'react-bootstrap';
+import {withAuth} from '../index';
 
-export default props => {
+const Loader = props => {
 	const { animation = 'grow', variant = 'primary', role = 'status' } = props;
 
 	return (
@@ -10,3 +11,5 @@ export default props => {
 		</Fragment>
 	);
 }
+
+export default ({ roles = [], ...props }) => withAuth(roles)(Loader, props);

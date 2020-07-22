@@ -7,8 +7,6 @@ import {
 } from '../index';
 import {Link} from '../index';
 import {UserContext} from '../../contexts/UserContext/UserContext';
-import Navlinks from './Navlinks';
-
 const BSNavbar = props => {
 	const [isOpen, setOpen] = useState(false);
     const {displayName} = useContext(UserContext);
@@ -20,7 +18,6 @@ const BSNavbar = props => {
 			</NavbarBrand>
 			<BootstrapNavbar.Toggle onClick={() => setOpen(!isOpen)} />
 			<BootstrapNavbar.Collapse isOpen={isOpen}>
-				<Navlinks />
                 <Nav style={{float: 'right'}}>
                     <NavItem>
                         <Link
