@@ -1,3 +1,4 @@
+export * from 'react-bootstrap';
 export {default as Authorization} from './Authorization/Authorization';
 export {default as DataTable} from './DataTable/index';
 export {default as Loader} from './Loader/index';

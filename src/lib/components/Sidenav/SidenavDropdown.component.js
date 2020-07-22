@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Collapse, MDBIcon } from 'mdbreact';
+import {Collapse} from 'react-bootstrap';
 import {Authorization, Link} from '../index';
 
 export default ({ label, items, query = ''}) => {
@@ -9,20 +9,22 @@ export default ({ label, items, query = ''}) => {
 		<div>
 			<p onClick={() => setOpen(!isOpen)}>
                 {label}
-                <MDBIcon icon={isOpen ? 'chevron-up' : 'chevron-down'} style={{marginLeft: '5px'}}/>
+                <span className={`fa fa-${isOpen ? 'chevron-up' : 'chevron-down'}`} style={{marginLeft: '5px'}}/>
             </p>
-			<Collapse isOpen={isOpen}>
-				{items
-					.filter(({ label }) =>
-						label.toLowerCase().includes(query.toLowerCase())
-					)
-					.map(({ label, to, roles }, index) => (
-						<Authorization key={index} roles={roles}>
-							<Link to={to} style={{ marginLeft: '1em' }}>
-								{label}
-							</Link>
-						</Authorization>
-					))}
+			<Collapse in={isOpen}>
+				<div>
+					{items
+						.filter(({ label }) =>
+							label.toLowerCase().includes(query.toLowerCase())
+						)
+						.map(({ label, to, roles }, index) => (
+							<Authorization key={index} roles={roles}>
+								<Link to={to} style={{ marginLeft: '1em' }}>
+									{label}
+								</Link>
+							</Authorization>
+						))}
+				</div>
 			</Collapse>
 		</div>
 	);

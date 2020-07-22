@@ -1,39 +1,38 @@
 import React, { useState, useContext } from 'react';
-import BSNavbar from 'react-bootstrap/Navbar';
-import NavbarCollapse from 'react-bootstrap/NavbarCollapse';
-import NavbarToggle from 'react-bootstrap/NavbarToggle';
+import BootstrapNavbar from 'react-bootstrap/Navbar';
 import {
     NavbarBrand,
     Nav,
     NavItem
-} from 'react-bootstrap';
+} from '../index';
 import {Link} from '../index';
 import {UserContext} from '../../contexts/UserContext/UserContext';
 import Navlinks from './Navlinks';
 
-export default () => {
+const BSNavbar = props => {
 	const [isOpen, setOpen] = useState(false);
     const {displayName} = useContext(UserContext);
-
+    
 	return (
-		<BSNavbar color='primary-color' dark expand='md'>
+		<BootstrapNavbar {...props}>
 			<NavbarBrand>
-				<strong className='white-text'>Nav</strong>
+				<strong>Nav</strong>
 			</NavbarBrand>
-			<NavbarToggle onClick={() => setOpen(!isOpen)} />
-			<NavbarCollapse isOpen={isOpen} navbar>
+			<BootstrapNavbar.Toggle onClick={() => setOpen(!isOpen)} />
+			<BootstrapNavbar.Collapse isOpen={isOpen}>
 				<Navlinks />
-                <Nav right>
+                <Nav style={{float: 'right'}}>
                     <NavItem>
                         <Link
                             to='/'
-                            className='waves-effect waves-light'
                         >
                             {displayName}
                         </Link>
                     </NavItem>
                 </Nav>
-			</NavbarCollapse>
-		</BSNavbar>
+			</BootstrapNavbar.Collapse>
+		</BootstrapNavbar>
 	);
 };
+
+export default BSNavbar;

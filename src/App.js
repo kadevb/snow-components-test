@@ -35,7 +35,7 @@ const sideNavLinks = [
 export default () => (
 	<NowApp>
 		<Router basename='x_472589_snow_comp_react_components_test.do'>
-			<Navbar />
+			<Navbar variant='dark' bg='primary' />
 			<Container fluid>
 			<Row>
 				<Col lg='3' xs='0'>

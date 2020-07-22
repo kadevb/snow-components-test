@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { MDBNav } from 'mdbreact';
+import {Nav} from 'react-bootstrap';
 import Sidenavlinks from './Sidenavlinks.component';
 
 export default props => {
 	const [query, setQuery] = useState('');
 
 	return (
-		<MDBNav
+		<Nav
 			className='flex-column'
 			style={{ borderRight: '1px solid black', height: '90vh' }}
 		>
-			<div className='input-group md-form form-sm form-1 pl-0'>
+			<div className='input-group'>
 				<div
-					className='input-group-append'
+					className='input-group'
 					style={{ minWidth: '100%' }}
 				>
 					<input
@@ -25,6 +25,6 @@ export default props => {
 				</div>
 			</div>
             <Sidenavlinks {...props} query={query} />
-		</MDBNav>
+		</Nav>
 	);
 };
