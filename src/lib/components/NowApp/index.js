@@ -1,8 +1,8 @@
-import React, {useReducer} from 'react';
+import React, {useReducer, Fragment} from 'react';
 import {cloneDeep} from 'lodash';
 import axios from 'axios';
 import {UserContext, userReducer} from '../../contexts/UserContext/UserContext';
-import {Authorization} from '../index';
+import {withAuth} from '../index';
 
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 import 'bootstrap-css-only/css/bootstrap.min.css';
@@ -19,17 +19,14 @@ const initialState = cloneDeep({
     email
 });
 
-export default props => {
+export default ({ children = null, roles = [] }) => {
     const [state] = useReducer(userReducer, initialState);
-    const {children = null, roles = []} = props;
 
     axios.defaults.headers['X-userToken'] = state.token || '';
 
     return (
         <UserContext.Provider value={state}>
-            <Authorization roles={roles}>
-                {children}
-            </Authorization>
+            {withAuth(roles)(() => <Fragment>{children}</Fragment>)}
         </UserContext.Provider>
     );
 };

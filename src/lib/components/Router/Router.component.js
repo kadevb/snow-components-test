@@ -1,12 +1,13 @@
 import React, {useReducer, useEffect} from 'react';
-import {routerReducer, NowRouterContext} from '../../contexts/NowRouterContext/NowRouterContext';
+import {routerReducer, RouterContext} from './RouterContext';
 import history from 'history/browser';
+import { withAuth } from '../index';
 
 const initialState = {
     routes: {}
 };
 
-export default ({basename, children}) => {
+const Router = ({basename, children}) => {
     const [state, dispatch] = useReducer(
         routerReducer, 
         Object.assign(
@@ -25,8 +26,10 @@ export default ({basename, children}) => {
     }, []);
 
     return (
-        <NowRouterContext.Provider value={{state, dispatch}}>
+        <RouterContext.Provider value={{state, dispatch}}>
             {children}
-        </NowRouterContext.Provider>
+        </RouterContext.Provider>
     );
 };
+
+export default ({ roles = [], ...props }) => withAuth(roles)(Router, props);

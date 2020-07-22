@@ -1,9 +1,10 @@
 import React from 'react';
 import NavLink from 'react-bootstrap/NavLink';
-import { NowRouterContext } from '../../contexts/NowRouterContext/NowRouterContext';
+import { RouterContext } from './RouterContext';
+import { withAuth } from '../index';
 
-export default ({ to, children, ...props }) => (
-	<NowRouterContext.Consumer>
+const Link = ({ to, children, ...props }) => (
+	<RouterContext.Consumer>
 		{({ dispatch }) => (
 			<NavLink {...props} onClick={e => {
 				e.preventDefault();
@@ -13,5 +14,7 @@ export default ({ to, children, ...props }) => (
 				{children}
 			</NavLink>
 		)}
-	</NowRouterContext.Consumer>
+	</RouterContext.Consumer>
 );
+
+export default ({ roles = [], ...props }) => withAuth(roles)(Link, props);

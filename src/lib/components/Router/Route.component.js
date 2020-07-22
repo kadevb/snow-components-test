@@ -1,14 +1,15 @@
 import React from 'react';
 import qs from 'query-string';
 import history from 'history/browser';
-import { NowRouterContext } from '../../contexts/NowRouterContext/NowRouterContext';
+import { RouterContext } from './RouterContext';
+import { withAuth } from '../index';
 
-export default props => {
+const Route = props => {
     const {path, component = null} = props;
     const Component = component;
 
     return (
-        <NowRouterContext.Consumer>
+        <RouterContext.Consumer>
             {({ state, dispatch }) => {
                 const { routes = {} } = state;
                 const { show = false } = routes[path] || {};
@@ -26,6 +27,8 @@ export default props => {
                 
                 return <Component {...routeProps} />;
             }}
-        </NowRouterContext.Consumer>
+        </RouterContext.Consumer>
     );
 }
+
+export default ({roles = [], ...props}) => withAuth(roles)(Route, props);

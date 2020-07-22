@@ -3,7 +3,7 @@ import {mapValues} from 'lodash';
 import qs from 'query-string';
 import history from 'history/browser';
 
-export const NowRouterContext = createContext();
+export const RouterContext = createContext();
 
 export const routerReducer = (state, {type, payload}) => {
     const { assign } = Object;

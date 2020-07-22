@@ -5,9 +5,11 @@ import { MDBDataTableV5 } from 'mdbreact';
 import {Loader} from '../index';
 
 export default (props) => {
-	const { table = '', columns, query = ''} = props;
+	const { table = '', columns = [], query = '', loader = Loader} = props;
 	const [records, setRecords] = useState([]);
 	const [isLoading, setLoading] = useState(true);
+
+	const LoaderComponent = loader;
 
 	const fields = columns.map(({ field }) => field).join(',');
 
@@ -26,7 +28,7 @@ export default (props) => {
 	}, [table, fields, query]);
 
 	if (isLoading) {
-		return <Loader />;
+		return <LoaderComponent />;
 	}
 
 	return (

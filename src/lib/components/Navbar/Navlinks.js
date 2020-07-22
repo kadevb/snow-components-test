@@ -6,7 +6,7 @@ import {
 	NavItem
 } from 'react-bootstrap';
 import {some} from 'lodash';
-import Authorization from '../Authorization/Authorization';
+import {Authorization} from '../index';
 
 
 const links = [
@@ -15,7 +15,7 @@ const links = [
 
 export default () => (
 	<Nav right>
-		{links.map(({ label = null, to = '?', roles = [], items = [], icon = null}, index) => {
+		{links.map(({ label = null, to = '?', roles = [], items = []}, index) => {
 			if (items.length === 0) {
 				return (
 					<Authorization key={index} roles={roles}>
