@@ -3,12 +3,12 @@ import {DataTable, Authorization} from '../lib/index';
 import tables from './tables';
 
 export default (props) => {
-    const [table, setTable] = useState(props.match.params.name || '');
+    const [table, setTable] = useState(props.match.params.table || '');
     const tableDef = tables[table] || {};
     const {fields = [], roles = [], label = null} = tableDef;
 
     useEffect(() => {
-        setTable(props.match.params.name || '');
+        setTable(props.match.params.table || '');
 
         return () => setTable('');
     }, [props]);

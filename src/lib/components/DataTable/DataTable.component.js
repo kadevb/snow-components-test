@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import {httpRequest, Loader, withAuth} from '../../index';
 import { flatten } from 'lodash';
 import { MDBDataTableV5 } from 'mdbreact';
-import {Loader, withAuth} from '../index';
 
 const DataTable = props => {
 	const { table = '', columns = [], query = '', loader = Loader} = props;
@@ -16,7 +15,7 @@ const DataTable = props => {
 	useEffect(() => {
 		setLoading(true);
 
-		axios
+		httpRequest
 			.get(
 				`/api/now/table/${table}?sysparm_query=${query}&sysparm_fields=${fields}&sysparm_display_value=all`
 			)

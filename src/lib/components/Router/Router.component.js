@@ -1,32 +1,34 @@
-import React, {useReducer, useEffect} from 'react';
-import {routerReducer, RouterContext} from './RouterContext';
-import history from 'history/browser';
+import React, {useState, useEffect} from 'react';
+import {RouterContext} from './RouterContext';
+import browserHistory from 'history/browser';
 import { withAuth } from '../index';
 
-const initialState = {
-    routes: {}
-};
+const Router = ({basename = '', children = null, history = browserHistory}) => {
+    const [location, setLocation] = useState(history.location);
+    const [_isMounted, setMounted] = useState(false);
+    const [_pendingLocation, setPendingLocation] = useState(null);
 
-const Router = ({basename, children}) => {
-    const [state, dispatch] = useReducer(
-        routerReducer, 
-        Object.assign(
-            {}, 
-            initialState, 
-            { basename }
-        )
-    );
+    const unlisten = history.listen(data => {
+        if(_isMounted) {
+            setLocation(_pendingLocation || data.location);
+            setPendingLocation(null);
+        } else {
+            setPendingLocation(data.location);
+        }
+    });
 
     useEffect(() => {
-        dispatch({type: 'location_change'});
+        setMounted(true);
 
-        history.listen(() => {
-            dispatch({type: 'location_change'});
-        });
+        return () => {
+            unlisten();
+            setMounted(false);
+            setPendingLocation(null);
+        }
     }, []);
 
     return (
-        <RouterContext.Provider value={{state, dispatch}}>
+        <RouterContext.Provider value={{history, location, basename}}>
             {children}
         </RouterContext.Provider>
     );

@@ -1,7 +1,7 @@
 import React, {useReducer, Fragment} from 'react';
 import {cloneDeep} from 'lodash';
 import axios from 'axios';
-import {UserContext, userReducer} from '../../contexts/UserContext/UserContext';
+import {UserContext, userReducer, defaultThemes} from '../../contexts/UserContext/UserContext';
 import {withAuth} from '../index';
 
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
@@ -16,16 +16,23 @@ const initialState = cloneDeep({
     displayName,
     roles,
     token,
-    email
+    email,
 });
 
-export default ({ children = null, roles = [] }) => {
-    const [state] = useReducer(userReducer, initialState);
+export default ({ children = null, roles = [], themes = defaultThemes }) => {
+    const [state, dispatch] = useReducer(
+        userReducer, 
+        Object.assign(
+            {}, 
+            initialState, 
+            { themes, theme: themes[initialState.theme] }
+        )
+    );
 
     axios.defaults.headers['X-userToken'] = state.token || '';
 
     return (
-        <UserContext.Provider value={state}>
+        <UserContext.Provider value={{state, dispatch}}>
             {withAuth(roles)(() => <Fragment>{children}</Fragment>)}
         </UserContext.Provider>
     );

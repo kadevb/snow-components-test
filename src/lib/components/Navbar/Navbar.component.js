@@ -1,35 +1,49 @@
-import React, { useState, useContext } from 'react';
-import BootstrapNavbar from 'react-bootstrap/Navbar';
+import React, { useState } from 'react';
+import _Navbar from 'react-bootstrap/Navbar';
+import {NavbarBrand, Nav, NavItem, Form} from 'react-bootstrap';
+import {Link, withAuth} from '../index';
 import {
-    NavbarBrand,
-    Nav,
-    NavItem
-} from '../index';
-import {Link} from '../index';
-import {UserContext} from '../../contexts/UserContext/UserContext';
-const BSNavbar = props => {
+    UserContext
+} from '../../index';
+
+const Navbar = props => {
 	const [isOpen, setOpen] = useState(false);
-    const {displayName} = useContext(UserContext);
-    
+
 	return (
-		<BootstrapNavbar {...props}>
-			<NavbarBrand>
-				<strong>Nav</strong>
-			</NavbarBrand>
-			<BootstrapNavbar.Toggle onClick={() => setOpen(!isOpen)} />
-			<BootstrapNavbar.Collapse isOpen={isOpen}>
-                <Nav style={{float: 'right'}}>
-                    <NavItem>
-                        <Link
-                            to='/'
-                        >
-                            {displayName}
-                        </Link>
-                    </NavItem>
-                </Nav>
-			</BootstrapNavbar.Collapse>
-		</BootstrapNavbar>
+		<UserContext.Consumer>
+            {(({state, dispatch}) => {
+                const { theme = {}, displayName = '' } = state;
+                const { variant = 'dark', bg = 'dark', name} = theme;
+
+                return (
+                    <_Navbar variant={variant} bg={bg} {...props} >
+                        <NavbarBrand>
+                            <strong>Nav</strong>
+                        </NavbarBrand>
+                        <_Navbar.Toggle onClick={() => setOpen(!isOpen)} />
+                        <_Navbar.Collapse isOpen={isOpen}>
+                            <Nav style={{float: 'right'}}>
+                                <NavItem>
+                                    <Link
+                                        to='/'
+                                    >
+                                        {displayName}
+                                    </Link>
+                                </NavItem>
+                                <NavItem>
+                                    <Form>
+                                        <Form.Switch type='switch' onClick={() => {
+                                            dispatch({type: 'set_theme', payload: name === 'dark' ? 'light' : 'dark'})
+                                        }} />
+                                    </Form>
+                                </NavItem>
+                            </Nav>
+                        </_Navbar.Collapse>
+                    </_Navbar>
+                );
+            })}
+        </UserContext.Consumer>
 	);
 };
 
-export default BSNavbar;
+export default ({ roles = [], ...props }) => withAuth(roles)(Navbar, props);
