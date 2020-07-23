@@ -8,7 +8,7 @@ const forwardRefFill = C => C;
 const isEventModified = event => !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 
 const normalize = (to, currentLocation = {}) => isFunction(to) ? to(currentLocation) : to;
-const resolve = (to, basename) => isString(to) ? `${basename}${to}` : to;
+const resolve = (to, basename) => isString(to) ? `${basename}${to}`.split('/').join('') : to;
 
 const LinkAnchor = forwardRef(
 	(
